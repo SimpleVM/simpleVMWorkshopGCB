@@ -17,14 +17,14 @@ Once you obtain a de.NBI Cloud account, please register for the SimpleVM project
 The workshop organizers will approve your project membership application as soon as possible.
 You should receive an email confirming that your are now member of the project.
 
-### 1.2 Select the SimpleVMGCB2025 project
+### 1.2 Select the SimpleVMGCB2026 project
 
 The actual tutorial starts from this page: https://simplevm.denbi.de . 
 
 1. Click on the **Create new Instance** tab.
 
 2. If you are already member of another SimpleVM project then you are offered a drop down menu to select
-a project. In this case please select the **SimpleVMGCB2025** project. If this is
+a project. In this case please select the **SimpleVMGCB2026** project. If this is
 your first SimpleVM project, SimpleVM will let you know that have to go to the profile page again to generate a new key.
 
 3. If you have no SSH key set so far or have not confirmed your unix name, just click on the **Got to Profile to set ...** button.
@@ -35,16 +35,19 @@ SimpleVM, we highly recommend to read our de.NBI Cloud wiki regarding
 SSH keys: https://cloud.denbi.de/wiki/portal/user_information/#ssh-key
 Regarding the Unix name, please confirm or update it before confirming.
 
+If you have not yet set an SSH key or confirmed your Unix name, click on the **Go to Profile to set...** button. To generate an SSH key, click on Generate new keypair on the profile page and save the private key. You will not need this file during this workshop because you will access all VMs via the browser.
+
    ![](./figures/unix_name_ssh.png)
 
 ### 1.3 Start a VM
 
-1. When naming your VM, please use your name without any spaces (e.g. Max Mustermann -> MaxMusterman). 
-2. Select **de.NBI default** as the flavor for your VM.
-3. In the image section, please click on the *Research Environments* tab 
+1. Once you have set your ssh key and unix name click again on the **Create new Instance** tab.
+2. When naming your VM, please use your name without any spaces (e.g. Max Mustermann -> MaxMusterman). 
+3. Select **de.NBI default** as the flavor for your VM.
+4. In the image section, please click on the *Research Environments* tab 
    and select the **TheiaIDE** image with OS version **24.04**.
    ![](./figures/theiaImage.png)
-4. Select the **Conda Packages** tab and choose the following tools with their version numbers given below for installation via Conda:
+5. Select the **Conda Packages** tab and choose the following tools with their version numbers given below for installation via Conda:
    The filter can be used to search for the packages:
 
    * ncbi-genome-download (0.3.3)
@@ -58,13 +61,14 @@ Regarding the Unix name, please confirm or update it before confirming.
    
    You will learn in the next sections how to apply these tools.
 
-4. Select a URL path for Theia. You will access Theia via this URL.
-   ![](figures/researchenvironment_url.png)
-5. Grant access to the workshop organizers.
+6. Open the **Additional Users** tab. You can grant access to the workshop organizers after 
+   confirm that you understand your responsibility for maintaining a secure environment.
    This way the organizers get ssh access to your VM and can help you in case
    something does not work as expected.
    ![](figures/grantAccess.png)
-6. Confirm the checkbox and click on **Start Instance**.
+7. Select a URL path for Theia via the **Research Environment Options** tab. You will access Theia via this URL.
+   ![](figures/researchenvironment_url.png)
+8. Click on **Start Instance**.
    ![](figures/start_instance.png)
 
 Next to [Section 2](part2.md)
