@@ -61,11 +61,10 @@ If you have not yet set an SSH key or confirmed your Unix name, click on the **G
    
    You will learn in the next sections how to apply these tools.
 
-6. Open the **Additional Users** tab. You can grant access to the workshop organizers after 
+6. Open the **Additional Users** tab. You can grant access to the workshop organizers (Peter Belmann, David Weinholz) after 
    confirm that you understand your responsibility for maintaining a secure environment.
    This way the organizers get ssh access to your VM and can help you in case
    something does not work as expected.
-   ![](figures/grantAccess.png)
 7. Select a URL path for Theia via the **Research Environment Options** tab. You will access Theia via this URL.
    ![](figures/researchenvironment_url.png)
 8. Click on **Start Instance**.

@@ -22,16 +22,16 @@ Next, we will search for more metagenomic datasets via object storage and scale 
    ![](figures/large_flavor.png)
 
 4. Please create a volume for your VM and enter your name without whitespace 
-   (Example: Max Mustermann -> MaxMusterman) as the volume name. 
+   (Example: Max Mustermann -> MaxMustermann) as the volume name. 
    Enter `data` (`/vol/data`) as mountpath and provide 1 GB as the storage size.
    Don't forget to click on `Add Volume`. 
    ![](figures/createVolume.png)
 
-5. Grant access to the workshop organizers. This way the organizers get ssh access to your VM and can help you in case something does not work as expected. 
-   ![](figures/grantAccess.png)
+5. Grant access to the workshop organizers (Peter Belmann, David Weinholz). This way the organizers get ssh access to your VM and can help you in case something does not work as expected. 
 
-6. Confirm the checkbox and click on **Start Instance**.
-   ![](figures/start_instance.png)
+6. Click on **Start Instance**.
+
+7. While the VM is starting you can assign additional tags to it. (e.g. part3, gcb, etc.) 
 
 ### 3.2 Interact with the SRA Mirror and search for more datasets to analyze
 
@@ -160,7 +160,8 @@ Next, we will search for more metagenomic datasets via object storage and scale 
    cat output/*.txt > output.tsv
    ```
 
-8. Let's plot how many genomes we have found against the number of their matched k-mer hashes:
+8. Let's plot how many genomes we have found against the number of their matched k-mer hashes.
+   First run `conda activate denbi` to be sure that csvtk is available.
    ```
    csvtk -t plot hist -H -f 3 --xlab "Matched K-mer Hashes" \
     --ylab "Found Datasets" --title "Mash Results " output.tsv -o output.pdf
@@ -195,22 +196,17 @@ In Part 4 of the workshop, we will take a closer look at the results.
 We will now save the generated data to a volume and delete the VM, since we will analyse the results using a Research Environment with a new VM
 in the next section.
 
-1. Set correct permissions on your volume:
-   ```
-   sudo chown ubuntu:ubuntu /vol/data/
-   ```
-
-2. Copy your results to the volume for later use:
+1. Copy your results to the volume which you have  for later use:
    ```
    cp publications.tsv output.tsv /vol/data
    ```
 
-3. Go to the **Instances** page and open the dropdown menu and click on the volume management button.
+2. Go to the **Instances** page and open the dropdown menu and click on the volume management button.
    ![](figures/manageVolumeButton.png)
 
    On the volumes details page detach the volume.
    ![](figures/detachVolumeButton.png)
 
-4. Finally, since you saved your output data you can safely delete the VM.
+3. Finally, since you saved your output data you can safely delete the VM.
 
 Back to [Section 2](part2.md) | Next to [Section 4](part4.md)

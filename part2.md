@@ -13,6 +13,8 @@ Log in to the VM to verify that it has been provisioned correctly by SimpleVM.
 1. After you have initiated the start-up of the machine, you should have been automatically redirected to the **Instances** tab.
    Now open the dropdown of your machine. Click on the Theia IDE URL which opens a new browser tab.
    ![](figures/howtoconnect.png)
+   You can add a tag to the VM if you like. Tags help you to organise your VMs, as well as all other components in future releases.
+   Example Tags: gcb, tutorial, intro, part2.
 2. Click on `Terminal` in the upper menu and select `New Terminal`.
    ![](figures/terminal.png)
 3. Inspect the VM before starting to work with it. Let's check whether the VM

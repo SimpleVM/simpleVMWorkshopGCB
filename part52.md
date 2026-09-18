@@ -6,8 +6,8 @@ for your computations. We will then use the cluster to assemble the metagenomes 
 
 ### 5.2 Investigate your cluster setup
 
-1. Click on the Clusters tab. After you have initiated the start-up of the cluster,
-   you should have been automatically redirected there. Now click on the cluster to open the dropdown.
+1. After you have initiated the start-up of the cluster, you should have been automatically redirected to the **Clusters** tab.
+   If not just click on it on the left side. Now click on the cluster to open the dropdown.
    Click on the Theia IDE URL which opens a new browser tab.
 
 2. Click on `Terminal` in the upper menu and select `New Terminal`.
@@ -114,12 +114,12 @@ or are just in `idle` state and the column `NODELIST` which is just the name of 
    touch output_array/${SLURM_ARRAY_TASK_ID}
    ```
  
-   You can execute this script a 100 times with the following command 
+   You can execute this script 30 times with the following command 
    ```
-   sbatch --array=1-100 basic_array.sh
+   sbatch --array=1-30 basic_array.sh
    ```
    
-   If you now check the `output_array` folder, you should see numbers from 0 to 100.
+   If you now check the `output_array` folder, you should see numbers from 0 to 30.
    ```
    ls output_array
    ```
@@ -143,9 +143,9 @@ Especially for the classification part we need a lot of storage in order to stor
 
 2. We need to download the GTDB database from our S3 storage. This time we will use another S3 tool called s5cmd which is pre-installed on the VM. This step will take up to 10 minutes.
    ```
-   s5cmd  --endpoint-url https://s3-int.bi.denbi.de  --no-sign-request cp --concurrency 28  s3://databases/gtdbtk_r226_v2_data/release* /vol/spool/database
+   s5cmd  --endpoint-url https://s3-int.bi.denbi.de  --no-sign-request cp --show-progress --concurrency 28  s3://databases/gtdbtk_r226_v2_data/release* /vol/spool/database
    ```
-   While the command is running you could investigate the s5cmd parameters in a second terminal and also try to rerun the minio commands of [part 3](https://github.com/SimpleVM/simpleVMWorkshopGCB/blob/main/part3.md#32-interact-with-the-sra-mirror-and-search-for-more-datasets-to-analyze) (Step 6 and 7) with s5cmd. 
+   While the database is downloaded you could open another terminal and continue with the next steps.
 
 3. Install Java 
 
@@ -210,18 +210,18 @@ cp ~/.nextflow/scm /vol/spool/.nextflow
    echo -e "ACCESSION\nERR2683178\nSRR492065\nSRR6439514" > sra.tsv 
    ```
    
-3. Run the Metagenomics-Toolkit. One of the datasets should be processed within a few minutes, so you can continue to the next subsection to inspect
+3. Check in the terminal if the download has finished. If this is the case run the Metagenomics-Toolkit. One of the datasets should be processed within a few minutes, so you can continue to the next subsection to inspect
    the result of the sample.
    ```
-   NXF_HOME=$PWD/.nextflow NXF_VER=25.04.2 nextflow run metagenomics/metagenomics-tk \
-        -r 0.13.2 \
+   NXF_HOME=$PWD/.nextflow NXF_VER=25.10.4 nextflow run metagenomics/metagenomics-tk \
+        -r 0.15.0 \
         -c /vol/spool/aws.config \
         -ansi-log false \
         -profile slurm -resume -entry wFullPipeline \
         -work-dir work \
         -params-file https://raw.githubusercontent.com/SimpleVM/simpleVMWorkshopGCB/refs/heads/main/config/fullPipeline_illumina_nanpore.yml \
         --databases=/vol/scratch/database/ \
-        --input.SRA.S3.path=/vol/spool/sra.tsv \
+        --input.SRA.S3.id "ERR2683178 SRR492065 SRR6439514" \
         --output=output \
         --steps.magAttributes.gtdb.database.extractedDBPath=/vol/spool/database/release226
    ``` 
@@ -239,9 +239,9 @@ cp ~/.nextflow/scm /vol/spool/.nextflow
 
        * `--databases` is the directory on the worker node where all databases are saved. Already downloaded and extracted databases on a shared file system can be configured in the database setting of the corresponding database section in the          configuration file.
 
-       * `--output` is the output directory where all results are saved. If you want to know more about which outputs are created, then please refer to the modules section.
+       * `--output` is the output directory where all results are saved. 
 
-       * `--input.SRA.S3.path` is the path to a TSV file that lists the datasets that should be processed. Besides paired-end data there are also other input types. Please check the input section.  
+       * `--input.SRA.S3.id` accepts a list of SRA Run IDs. 
    </details>
 
 3. (Optional) You could open a second terminal in Theia to check the progress using **squeue** and **watch**.
@@ -306,10 +306,10 @@ SRR492065_bin.4.fa      d__Bacteria;p__Bacillota;c__Bacilli;o__Staphylococcales;
    be added to the configuration file: 
    For example:
 
-    * Check the completeness or contamination of your MAGs using [Checkm](https://metagenomics.github.io/metagenomics-tk/latest/modules/magAttributes/).
+   * Check the completeness or contamination of your MAGs using [Checkm](https://metagenomics.github.io/metagenomics-tk/latest/modules/magAttributes/).
 
-    * Investigate possible [plasmids](https://metagenomics.github.io/metagenomics-tk/latest/modules/plasmids/).  
+   * Investigate possible [plasmids](https://metagenomics.github.io/metagenomics-tk/latest/modules/plasmids/).  
 
-    * Compare the detected MAGs using the [dereplication](https://metagenomics.github.io/metagenomics-tk/latest/modules/dereplication/) module.
+   * Compare the detected MAGs using the [dereplication](https://metagenomics.github.io/metagenomics-tk/latest/modules/dereplication/) module.
 
 Back to [Section 5 (Part 1)](part51.md)

@@ -12,16 +12,17 @@ in order to inspect and visualize our results.
 2. In the image section, please click on the *Research Environments* tab 
    and select the **RStudio** image with OS version **24.04**.
    
-3. In the volume tab please choose the volume you created
+3. In the volume tab please click on **Available Volumes** and choose the volume you created
    in the previous part of the workshop.
    Please use again `/vol/data` as mountpath. Click on **Attach to new machine** to add the volume.
+   ![](figures/attachExistingVolume.png)
 
-4. Grant access to the workshop organizers.
+4. Grant access to the workshop organizers (Peter Belmann, David Weinholz).
    This way the organizers get ssh access to your VM and can help you in case
    something does not work as expected.
-   ![](figures/grantAccess.png)
 
-5. Confirm all checkboxes and click on start.
+5. Click on Start. You will then be redirected to the **Instance Overview** page, where you can set custom tags while
+   your VM is being prepared.
 
 6. It will take a few minutes to start the machine. In the instance overview, click on the newly started VM to open the tab.
    Click on 'Rstudio' to see the URL of your research environment. A new tab should open in your browser.
@@ -34,7 +35,7 @@ in order to inspect and visualize our results.
    Password: simplevm
    ```
 
-2. In RStudio please open a Terminal first by either selecting the `Terminal` tab, or by clicking on
+2. In RStudio please open a terminal first by either selecting the `Terminal` tab, or by clicking on
    `Tools` -> `Terminal` -> `New Terminal`.
 
 3. Download the Script by running wget:
