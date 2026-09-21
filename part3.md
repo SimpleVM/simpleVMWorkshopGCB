@@ -166,7 +166,7 @@ Next, we will search for more metagenomic datasets via object storage and scale 
    csvtk -t plot hist -H -f 3 --xlab "Matched K-mer Hashes" \
     --ylab "Found Datasets" --title "Mash Results " output.tsv -o output.pdf
    ```
-   You can open this file by a click on the Explorer View and selecting the pdf. 
+   You can open this file by a click on the Explorer View and right clicking the pdf and choosing "Download" 
    ![](figures/openpdf.png)
 
 9. Get the title and the environment name of the found datasets by using Entrez tools. 
